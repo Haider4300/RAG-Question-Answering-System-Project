@@ -1,0 +1,181 @@
+================================================================================
+                                CURRICULUM VITAE
+================================================================================
+
+PERSONAL INFORMATION
+--------------------------------------------------------------------------------
+Full Name:              Sarah Michelle Chen
+Date of Birth:          15 March 1993
+Nationality:            Canadian
+Marital Status:         Single
+Languages:              English (Native), French (Fluent), Mandarin (Intermediate)
+Phone:                  +1 (416) 555-0234
+Email:                  sarah.chen@email.com
+LinkedIn:               linkedin.com/in/sarahchen
+GitHub:                 github.com/sarahchen
+Address:                45 Lakeview Avenue, Toronto, ON, Canada M5V 2T6
+
+PROFESSIONAL SUMMARY
+--------------------------------------------------------------------------------
+Results-driven Data Scientist with over 6 years of experience in machine
+learning, statistical analysis, and big data technologies. Proven track record
+of delivering data-driven solutions that increase operational efficiency by
+35%+. Strong background in Python, SQL, and cloud computing. Excellent
+communication skills with experience presenting complex findings to
+non-technical stakeholders. Seeking senior-level position to leverage
+expertise in AI and predictive analytics.
+
+CORE COMPETENCIES
+--------------------------------------------------------------------------------
+• Machine Learning & AI          • Data Visualization (Tableau, Power BI)
+• Python, R, SQL                 • Big Data (Spark, Hadoop)
+• Statistical Analysis           • Cloud Platforms (AWS, Azure)
+• Deep Learning (TensorFlow)    • A/B Testing & Experimentation
+• Data Wrangling & ETL           • Business Intelligence
+• Predictive Modeling            • Natural Language Processing
+
+WORK EXPERIENCE
+--------------------------------------------------------------------------------
+Senior Data Scientist
+TechInnovate Solutions, Toronto, ON
+January 2021 – Present
+
+• Led a team of 4 data scientists to develop a customer churn prediction model,
+  resulting in a 22% reduction in customer attrition within 9 months.
+• Designed and implemented ETL pipelines processing over 5TB of customer data
+  weekly, improving data accessibility for 3 cross-functional teams.
+• Created interactive dashboards using Tableau that provided real-time insights
+  to executive leadership, influencing key strategic decisions.
+• Mentored 2 junior data scientists, conducting code reviews and leading weekly
+  knowledge-sharing sessions on advanced machine learning techniques.
+• Published an internal research paper on anomaly detection algorithms that was
+  adopted as a standard practice in the department.
+
+Data Analyst
+Global Retail Group, Vancouver, BC
+June 2018 – December 2020
+
+• Analyzed sales data from 50+ retail locations to identify underperforming
+  product categories, leading to a 15% increase in quarterly revenue.
+• Automated 8 manual reporting processes using Python scripts, saving the
+  analytics team approximately 20 hours per week.
+• Collaborated with the marketing department to develop customer segmentation
+  models that improved targeted campaign ROI by 28%.
+• Presented weekly performance reports to regional managers, translating complex
+  data into actionable business recommendations.
+
+Junior Data Analyst
+Nexus Financial Services, Calgary, AB
+August 2016 – May 2018
+
+• Assisted in the development of credit risk scoring models using logistic
+  regression and decision trees, improving loan approval accuracy by 12%.
+• Maintained and optimized SQL databases containing over 2 million customer
+  records, ensuring 99.9% data integrity.
+• Responded to ad-hoc data requests from various departments, delivering
+  accurate results within tight deadlines.
+
+================================================================================
+PAGE 1 OF 2
+================================================================================
+
+EDUCATION
+--------------------------------------------------------------------------------
+Master of Science in Data Science
+University of British Columbia, Vancouver, BC
+September 2014 – June 2016
+• GPA: 3.9/4.0
+• Thesis: "Predictive Maintenance in Manufacturing Using Sensor Data"
+• Relevant Coursework: Advanced Machine Learning, Big Data Analytics,
+  Statistical Inference, Database Systems
+
+Bachelor of Science in Mathematics and Statistics
+University of Toronto, Toronto, ON
+September 2010 – May 2014
+• GPA: 3.7/4.0
+• Minor in Computer Science
+• Dean's List for 3 consecutive years (2012–2014)
+• Relevant Coursework: Linear Algebra, Calculus, Probability Theory,
+  Object-Oriented Programming, Data Structures
+
+CERTIFICATIONS
+--------------------------------------------------------------------------------
+• AWS Certified Machine Learning – Specialty (2023)
+• Google Professional Data Engineer (2022)
+• Deep Learning Specialization – deeplearning.ai (2021)
+• Tableau Desktop Specialist (2020)
+
+TECHNICAL SKILLS
+--------------------------------------------------------------------------------
+Programming Languages:    Python, R, SQL, Java (Basic), Scala (Basic)
+Libraries/Frameworks:     Pandas, NumPy, Scikit-learn, TensorFlow, Keras, PyTorch
+Databases:                PostgreSQL, MySQL, MongoDB, Cassandra
+Big Data Tools:           Apache Spark, Hadoop, Hive
+Visualization:            Tableau, Power BI, Matplotlib, Seaborn
+Cloud Platforms:          AWS (S3, EC2, SageMaker), Azure ML
+Version Control:          Git, GitHub, GitLab
+Other Tools:              Docker, Jupyter Notebook, Airflow
+
+PROJECTS (Selected)
+--------------------------------------------------------------------------------
+1. Real-Time Sentiment Analysis Dashboard
+   • Built a streaming pipeline using Kafka and Spark to analyze Twitter data
+   • Achieved 85% accuracy in sentiment classification using fine-tuned BERT
+   • Deployed dashboard using Streamlit, accessible to marketing team
+
+2. Medical Image Classification (Deep Learning)
+   • Developed CNN model to classify chest X-ray images into 3 disease categories
+   • Achieved 91% validation accuracy using transfer learning (ResNet-50)
+   • Published results on GitHub repository with 150+ stars
+
+3. Customer Segmentation for E-Commerce
+   • Applied K-means clustering to 500,000 customer transaction records
+   • Identified 7 distinct customer personas for targeted marketing
+   • Presented findings to C-suite, leading to redesigned loyalty program
+
+PUBLICATIONS & RESEARCH
+--------------------------------------------------------------------------------
+• Chen, S., Williams, T. (2023). "Anomaly Detection in High-Frequency Trading
+  Data Using Isolation Forests." Journal of Financial Data Science, 5(2), 45-59.
+• Chen, S. (2022). "Optimizing Hyperparameters for Gradient Boosting Models."
+  Proceedings of the International Conference on Machine Learning, 112-120.
+
+AWARDS & HONORS
+--------------------------------------------------------------------------------
+• Data Science Excellence Award, TechInnovate Solutions (2022, 2023)
+• Best Research Paper Nomination, ICML Conference (2022)
+• UBC Graduate Fellowship (2015–2016)
+• NSERC Undergraduate Student Research Award (2013)
+
+PROFESSIONAL AFFILIATIONS
+--------------------------------------------------------------------------------
+• Member, Institute of Electrical and Electronics Engineers (IEEE)
+• Member, Association for Computing Machinery (ACM)
+• Certified Analytics Professional (CAP) – in progress
+
+VOLUNTEER EXPERIENCE
+--------------------------------------------------------------------------------
+Data Science Mentor
+Women in Tech Initiative, Toronto, ON
+September 2022 – Present
+• Mentor 5 junior women professionals in data science career development
+• Organize monthly coding workshops and resume review sessions
+
+Tech Volunteer
+Habitat for Humanity, Vancouver, BC
+January 2019 – December 2020
+• Assisted in developing a donor management database and reporting system
+
+REFERENCES
+--------------------------------------------------------------------------------
+Available upon request.
+
+Dr. Michael Thompson          Ms. Jessica Lee
+Professor, UBC                Director of Analytics
+Email: m.thompson@ubc.edu     TechInnovate Solutions
+Phone: (604) 555-0187         Email: j.lee@techinnovate.com
+                              Phone: (416) 555-0942
+
+================================================================================
+PAGE 2 OF 2
+================================================================================
