@@ -1,33 +1,84 @@
+# # Python
+# __pycache__/
+# *.pyc
+# *.pyo
+# *.pyd
+# .Python
+
+# # Build / packaging
+# build/
+# dist/
+# *.egg-info/
+# *.egg
+
+# # Virtual environments
+# .venv/
+# venv/
+# env/
+# .env
+
+# # IDE
+# .idea/
+# .vscode/
+# *.swp
+# *.swo
+
+# # Node (frontend)
+# node_modules/
+# .npm/
+# package-lock.json
+
+# # Data / indexes (runtime generated - do not commit)
+# faiss_index/
+# faiss_index_uploaded/
+# uploaded_files/
+# chat_history.json
+# *.faiss
+# *.pkl
+
+# # Jupyter
+# .ipynb_checkpoints/
+
+# # OS files
+# .DS_Store
+# Thumbs.db
+
+
 # Python
 __pycache__/
-*.pyc
+*.py[cod]
 *.pyo
-*.pyd
-
-# Build / packaging
-build/
-dist/
-*.egg-info/
-
-# Virtual environments
 .venv/
 venv/
-env/
-
-# Node (frontend)
-node_modules/
-.npm/
-
-# Data / indexes (IMPORTANT)
-faiss_index/
-*.faiss
-*.pkl
-
-# Jupyter
-.ipynb_checkpoints/
-
-# Environment variables
 .env
+*.egg-info/
+dist/
+build/
 
-# OS files
+# uv
+.python-version
+
+# FAISS indexes (rebuilt at runtime)
+faiss_index/
+faiss_index_uploaded/
+
+# Uploaded files (user data, not source code)
+uploaded_files/
+
+# Persistent data files (generated at runtime)
+chat_history.json
+documents_meta.json
+
+# Node
+frontend/node_modules/
+frontend/dist/
+frontend/.env
+
+# OS
 .DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp

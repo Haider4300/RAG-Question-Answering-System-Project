@@ -25,7 +25,7 @@ vs.save_local("faiss_index")
 # --- 2. RAG CHAIN (retrieve -> generate) ---
 retriever = vs.as_retriever(search_kwargs={"k": 3})
 llm = ChatOllama(
-    model="minimax-m2.7:cloud", 
+    model="llama3.2:1b", 
     temperature=0,
     # num_predict=1024,
     # num_ctx=4096

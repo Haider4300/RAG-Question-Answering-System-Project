@@ -1,13 +1,21 @@
 # RAG Question-Answering System
 
-A Retrieval-Augmented Generation (RAG) system that answers questions about Sarah Chen's CV using vector search (FAISS) and Ollama LLMs.
+A Retrieval-Augmented Generation (RAG) system with document upload, chat history, and web search fallback. Upload PDF, DOCX, or TXT documents and ask questions about them using vector search (FAISS) and Ollama LLMs.
+
+## Features
+
+- **Document Upload**: Upload PDF, DOCX, TXT files (up to 10MB and 250 pages)
+- **Chat History**: Multiple conversations with persistent storage
+- **RAG-powered Answers**: Get answers based on your uploaded documents
+- **Web Search Fallback**: Falls back to web search when no documents are uploaded
+- **Responsive Design**: Works on desktop and mobile
 
 ## Architecture
 
 ```
 ┌─────────────┐     ┌─────────────┐     ┌─────────────┐
-│   doc.txt   │────▶│   Ollama    │────▶│    FAISS    │
-│  (source)   │     │ embeddings  │     │   index     │
+│   Uploaded  │────▶│   Ollama    │────▶│    FAISS    │
+│  Documents  │     │ embeddings │     │   index     │
 └─────────────┘     └─────────────┘     └─────────────┘
                                              │
                                              ▼
@@ -32,26 +40,6 @@ A Retrieval-Augmented Generation (RAG) system that answers questions about Sarah
 - **Backend**: FastAPI
 - **Frontend**: React + Tailwind CSS + Vite
 
-## Project Structure
-
-```
-rag/
-├── main.py           # CLI version (one-time index + query)
-├── api.py            # FastAPI server for inference
-├── doc.txt           # Source document (Sarah Chen's CV)
-├── faiss_index/      # Vector store (created at runtime)
-│   ├── index.faiss
-│   └── index.pkl
-├── frontend/         # React frontend
-│   ├── src/
-│   │   ├── App.jsx
-│   │   ├── lib/api.js
-│   │   └── main.jsx
-│   ├── package.json
-│   └── vite.config.js
-└── README.md
-```
-
 ## Setup
 
 ### 1. Prerequisites
@@ -67,84 +55,73 @@ ollama pull nomic-embed-text
 ollama pull minimax-m2.7:cloud
 ```
 
-### 3. Install Python Dependencies
+### 3. Install Dependencies
 
 ```bash
-cd rag
-pip install -e .
-# or
-uv sync
-```
+# Backend
+pip install fastapi uvicorn langchain langchain-ollama langchain-community faiss-cpu pymupdf python-docx
 
-### 4. Install Frontend Dependencies
-
-```bash
+# Frontend
 cd frontend
 npm install
 ```
 
 ## Usage
 
-### Option 1: API + Frontend (Recommended)
+### Start FastAPI Backend
 
-**Terminal 1 - Start FastAPI:**
 ```bash
-cd rag
 python api.py
 ```
 
-**Terminal 2 - Start Frontend:**
+### Start Frontend
+
 ```bash
-cd rag/frontend
+cd frontend
 npm run dev
 ```
 
 Open [http://localhost:5173](http://localhost:5173) in your browser.
 
-### Option 2: CLI (Direct)
+## Document Upload Limits
 
-```bash
-cd rag
-python main.py
-Enter your question: What is Sarah Chen's work experience?
-```
+- **Max file size**: 10 MB
+- **Max pages**: 250 pages
+- **Supported formats**: PDF, DOCX, TXT
+
+For best results, upload smaller documents or split larger books into chapters.
 
 ## API Endpoints
 
 | Method | Endpoint | Description |
 |--------|----------|-------------|
 | `GET` | `/health` | Health check |
+| `POST` | `/documents/upload` | Upload a document |
+| `GET` | `/documents` | List uploaded documents |
+| `DELETE` | `/documents/{doc_id}` | Delete a document |
 | `POST` | `/query` | Ask a question |
+| `GET` | `/chats` | List chat conversations |
+| `POST` | `/chats` | Create new chat |
+| `GET` | `/chats/{chat_id}` | Get chat messages |
+| `DELETE` | `/chats/{chat_id}` | Delete chat |
 
-### Example Request
+## Project Structure
 
-```bash
-curl -X POST http://localhost:8000/query \
-  -H "Content-Type: application/json" \
-  -d '{"question": "What is Sarah Chen'\''s work experience?"}'
 ```
-
-### Example Response
-
-```json
-{
-  "answer": "Sarah Chen is a Senior Data Scientist at TechInnovate Solutions...",
-  "sources": [
-    {
-      "content": "Senior Data Scientist\nTechInnovate Solutions, Toronto, ON\nJanuary 2021 – Present\n...",
-      "metadata": {"source": "doc.txt"}
-    }
-  ],
-  "question": "What is Sarah Chen's work experience?"
-}
+├── api.py                 # FastAPI backend server
+├── main.py               # CLI version (one-time indexing)
+├── chat_history.json     # Chat storage (created at runtime)
+├── faiss_index_uploaded/ # Vector index (created at runtime)
+├── uploaded_files/       # Uploaded documents (created at runtime)
+├── frontend/             # React frontend
+│   ├── src/
+│   │   ├── App.jsx
+│   │   ├── lib/api.js
+│   │   └── index.css
+│   ├── package.json
+│   └── vite.config.js
+└── README.md
 ```
-
-## Rebuilding the Index
-
-If `doc.txt` changes, delete `faiss_index/` and either:
-
-- Run `python main.py` once to rebuild, then use `api.py`
-- Or modify `api.py` to rebuild on startup (add index creation before loading)
 
 ## Environment
 
