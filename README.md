@@ -10,6 +10,10 @@ A Retrieval-Augmented Generation (RAG) system with document upload, chat history
 - **Web Search Fallback**: Falls back to web search when no documents are uploaded
 - **Responsive Design**: Works on desktop and mobile
 
+## 💬 Chat Interface
+
+![Hybrid RAG Chat UI](screenshots/chat-ui.png)
+
 ## Architecture
 
 ```
