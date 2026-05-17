@@ -1,134 +1,455 @@
-# RAG Question-Answering System
+# 🧠 Hybrid RAG AI System
 
-A Retrieval-Augmented Generation (RAG) system with document upload, chat history, and web search fallback. Upload PDF, DOCX, or TXT documents and ask questions about them using vector search (FAISS) and Ollama LLMs.
+An intelligent **Hybrid Retrieval-Augmented Generation (RAG) AI System** that dynamically routes user queries between:
 
-## Features
+- 📄 Document-based Retrieval (RAG)
+- 💡 General AI Responses
+- 🌐 Real-Time Web Search
 
-- **Document Upload**: Upload PDF, DOCX, TXT files (up to 10MB and 250 pages)
-- **Chat History**: Multiple conversations with persistent storage
-- **RAG-powered Answers**: Get answers based on your uploaded documents
-- **Web Search Fallback**: Falls back to web search when no documents are uploaded
-- **Responsive Design**: Works on desktop and mobile
+This project combines **semantic retrieval**, **LLMs**, **vector search**, and **live web search** into a single AI assistant capable of handling both static and dynamic knowledge sources.
 
 ## 💬 Chat Interface
 
 ![Hybrid RAG Chat UI](screenshots/chat-ui.png)
 
-## Architecture
+---
 
+# 🚀 Project Highlights
+
+✅ Hybrid AI Routing Architecture  
+✅ Semantic Document Search using FAISS  
+✅ Multi-Document Question Answering  
+✅ Real-Time Web Search Integration  
+✅ Streaming LLM Responses  
+✅ Context-Aware Conversations  
+✅ FastAPI Backend + React Frontend  
+✅ Ollama Local LLM Integration  
+✅ Persistent Multi-Chat Sessions  
+✅ Source Citations with Page Numbers  
+
+---
+
+# 📌 Why This Project?
+
+Traditional chatbots struggle to determine:
+
+- When to retrieve information from documents
+- When to answer directly using LLM knowledge
+- When live/current web information is required
+
+This project solves that problem using an intelligent routing system that dynamically selects the best response pipeline.
+
+---
+
+# 🏗️ System Architecture
+
+```text
+                          ┌────────────────────┐
+                          │    User Query      │
+                          └─────────┬──────────┘
+                                    │
+                                    ▼
+                     ┌─────────────────────────┐
+                     │ Intelligent Query Router│
+                     │  (Rule-Based Routing)  │
+                     └─────────┬──────────────┘
+                               │
+         ┌─────────────────────┼─────────────────────┐
+         │                     │                     │
+         ▼                     ▼                     ▼
+
+ ┌────────────────┐   ┌────────────────┐   ┌────────────────┐
+ │  Document RAG  │   │  General LLM   │   │   Web Search   │
+ └───────┬────────┘   └────────┬───────┘   └────────┬───────┘
+         │                     │                     │
+         ▼                     ▼                     ▼
+
+ ┌────────────────┐   ┌────────────────┐   ┌────────────────┐
+ │ FAISS VectorDB │   │ Gemma3 via     │   │ DuckDuckGo     │
+ │ Semantic Search│   │ Ollama         │   │ Live Search    │
+ └───────┬────────┘   └────────┬───────┘   └────────┬───────┘
+         │                     │                     │
+         ▼                     ▼                     ▼
+
+ ┌──────────────────────────────────────────────────────────┐
+ │                 Final AI Response                       │
+ └──────────────────────────────────────────────────────────┘
 ```
-┌─────────────┐     ┌─────────────┐     ┌─────────────┐
-│   Uploaded  │────▶│   Ollama    │────▶│    FAISS    │
-│  Documents  │     │ embeddings │     │   index     │
-└─────────────┘     └─────────────┘     └─────────────┘
-                                             │
-                                             ▼
-┌─────────────┐     ┌─────────────┐     ┌─────────────┐
-│   FastAPI   │◀────│   Ollama    │◀────│  Retriever  │
-│    API      │     │   LLM       │     │   (top-k)   │
-└─────────────┘     └─────────────┘     └─────────────┘
-       │
-       ▼
-┌─────────────┐
-│   React     │
-│   Frontend  │
-└─────────────┘
+
+---
+
+# ⚡ How Query Routing Works
+
+The system intelligently determines which pipeline should handle the query.
+
+---
+
+## 📄 Route 1 — Document RAG
+
+Triggered when:
+- User asks about uploaded documents
+- User references PDFs/files
+- Follow-up questions require document context
+
+### Features
+- Semantic vector search
+- Multi-document retrieval
+- Source citations
+- Context-aware follow-ups
+- Page-level referencing
+
+### Example Queries
+
+```text
+"Summarize this PDF"
+"What are the financial results?"
+"Explain chapter 3 from the uploaded document"
 ```
 
-## Tech Stack
+---
 
-- **Embeddings**: `nomic-embed-text` via Ollama
-- **LLM**: `minimax-m2.7:cloud` via Ollama ChatOllama
-- **Vector Store**: FAISS
-- **RAG Framework**: LangChain
-- **Backend**: FastAPI
-- **Frontend**: React + Tailwind CSS + Vite
+## 💡 Route 2 — General LLM
 
-## Setup
+Triggered when:
+- User asks conceptual/general knowledge questions
+- No uploaded document context exists
 
-### 1. Prerequisites
+### Features
+- Direct LLM response
+- Fast inference
+- Coding assistance
+- Explanations
+- AI/ML help
+
+### Example Queries
+
+```text
+"What is deep learning?"
+"Explain transformers"
+"Write a Python sorting function"
+```
+
+---
+
+## 🌐 Route 3 — Web Search
+
+Triggered when:
+- Query requires current/live information
+
+### Features
+- Real-time search
+- News retrieval
+- Weather updates
+- Recent events
+- Current AI trends
+
+### Example Queries
+
+```text
+"Latest GPT-5 news"
+"Weather in Lahore"
+"Who won yesterday's match?"
+```
+
+---
+
+# 🧩 Core AI Engineering Concepts
+
+This project demonstrates multiple modern AI engineering patterns used in real-world AI systems:
+
+| Concept | Description |
+|---|---|
+| Retrieval-Augmented Generation (RAG) | Combines retrieval with generation |
+| Semantic Search | Meaning-based retrieval |
+| Vector Similarity Search | FAISS embedding search |
+| Query Classification | Intelligent route selection |
+| Context Injection | Injecting retrieved chunks into prompts |
+| Streaming Responses | Token-by-token generation |
+| Multi-Pipeline AI Systems | Combining multiple AI routes |
+| Conversational Context Tracking | Persistent chat context |
+| Hybrid Knowledge Systems | Static + dynamic knowledge |
+
+---
+
+# 🛠️ Tech Stack
+
+| Layer | Technology |
+|---|---|
+| LLM Runtime | Ollama |
+| LLM Model | gemma3:4b |
+| Embeddings | nomic-embed-text |
+| Vector Database | FAISS |
+| RAG Framework | LangChain |
+| Backend | FastAPI |
+| Frontend | React + Vite |
+| Styling | Tailwind CSS |
+| Web Search | DuckDuckGo |
+| Streaming | NDJSON |
+| Language | Python |
+
+---
+
+# 📂 Project Structure
+
+```text
+Hybrid-RAG-System/
+│
+├── api.py
+├── main.py
+├── pyproject.toml
+├── README.md
+│
+├── uploads/
+├── vector_store/
+│
+├── frontend/
+│   ├── src/
+│   │   ├── App.jsx
+│   │   ├── components/
+│   │   ├── lib/
+│   │   └── main.jsx
+│   │
+│   ├── package.json
+│   ├── vite.config.js
+│   └── index.html
+│
+└── screenshots/
+```
+
+---
+
+# 📸 Screenshots
+
+## 💬 Chat Interface
+
+```text
+Add screenshot:
+screenshots/chat-ui.png
+```
+
+---
+
+## 📄 Document Upload
+
+```text
+Add screenshot:
+screenshots/upload.png
+```
+
+---
+
+## ⚡ Streaming Responses
+
+```text
+Add screenshot:
+screenshots/streaming.png
+```
+
+---
+
+## 📚 Source Citations
+
+```text
+Add screenshot:
+screenshots/citations.png
+```
+
+---
+
+# ⚙️ Installation & Setup
+
+---
+
+## 1️⃣ Prerequisites
+
+Install the following:
 
 - Python 3.11+
 - Node.js 18+
-- [Ollama](https://ollama.ai/) installed and running
+- Ollama
 
-### 2. Pull Ollama Models
+Download Ollama:
 
-```bash
-ollama pull nomic-embed-text
-ollama pull minimax-m2.7:cloud
+```text
+https://ollama.ai/
 ```
 
-### 3. Install Dependencies
+---
+
+# 2️⃣ Pull Required Models
 
 ```bash
-# Backend
-pip install fastapi uvicorn langchain langchain-ollama langchain-community faiss-cpu pymupdf python-docx
+ollama pull gemma3:4b
+ollama pull nomic-embed-text
+```
 
-# Frontend
+---
+
+# 3️⃣ Install Backend Dependencies
+
+Using `uv` (recommended):
+
+```bash
+uv sync
+```
+
+Or using pip:
+
+```bash
+pip install fastapi uvicorn langchain langchain-community \
+langchain-ollama faiss-cpu pymupdf python-docx \
+python-multipart duckduckgo-search
+```
+
+---
+
+# 4️⃣ Install Frontend Dependencies
+
+```bash
 cd frontend
 npm install
 ```
 
-## Usage
+---
 
-### Start FastAPI Backend
+# ▶️ Run The Application
+
+---
+
+## Backend
 
 ```bash
 python api.py
 ```
 
-### Start Frontend
+Runs on:
+
+```text
+http://localhost:8000
+```
+
+---
+
+## Frontend
 
 ```bash
 cd frontend
 npm run dev
 ```
 
-Open [http://localhost:5173](http://localhost:5173) in your browser.
+Runs on:
 
-## Document Upload Limits
+```text
+http://localhost:5173
+```
 
-- **Max file size**: 10 MB
-- **Max pages**: 250 pages
-- **Supported formats**: PDF, DOCX, TXT
+---
 
-For best results, upload smaller documents or split larger books into chapters.
-
-## API Endpoints
+# 🔌 API Endpoints
 
 | Method | Endpoint | Description |
-|--------|----------|-------------|
-| `GET` | `/health` | Health check |
-| `POST` | `/documents/upload` | Upload a document |
-| `GET` | `/documents` | List uploaded documents |
-| `DELETE` | `/documents/{doc_id}` | Delete a document |
-| `POST` | `/query` | Ask a question |
-| `GET` | `/chats` | List chat conversations |
-| `POST` | `/chats` | Create new chat |
-| `GET` | `/chats/{chat_id}` | Get chat messages |
-| `DELETE` | `/chats/{chat_id}` | Delete chat |
+|---|---|---|
+| GET | `/health` | Health check |
+| POST | `/query` | Standard query |
+| POST | `/query/stream` | Streaming query |
+| POST | `/documents/upload` | Upload document |
+| GET | `/documents` | List documents |
+| DELETE | `/documents/{id}` | Delete document |
+| GET | `/chats` | List chats |
+| POST | `/chats` | Create chat |
+| GET | `/chats/{id}` | Get chat history |
 
-## Project Structure
+---
 
+# 🌐 Deployment Options
+
+| Platform | Usage |
+|---|---|
+| Hugging Face Spaces | Full AI app deployment |
+| Vercel | Frontend hosting |
+| Render | Backend hosting |
+
+---
+
+
+# 📈 Current Capabilities
+
+✅ Hybrid AI Routing  
+✅ Semantic Document Retrieval  
+✅ Streaming LLM Responses  
+✅ Persistent Conversations  
+✅ Context-Aware Follow-Ups  
+✅ Real-Time Web Search  
+✅ Multi-Document Support  
+✅ Full-Stack AI Architecture  
+
+---
+
+# 🚀 Future Improvements
+
+Planned future enhancements:
+
+- Docker deployment
+- Redis caching
+- PostgreSQL integration
+- Authentication system
+- Hybrid dense+sparse retrieval
+- LangGraph workflows
+- Multi-modal document support
+- Voice assistant integration
+- GPU inference optimization
+- Agentic tool calling
+- Memory-enhanced conversations
+
+---
+
+# 🧪 Example Workflow
+
+```text
+User uploads PDF
+        │
+        ▼
+Document indexed into FAISS
+        │
+        ▼
+User asks question
+        │
+        ▼
+Query Router detects DOCUMENT route
+        │
+        ▼
+Relevant chunks retrieved
+        │
+        ▼
+Chunks injected into LLM prompt
+        │
+        ▼
+LLM generates contextual answer
+        │
+        ▼
+Answer returned with citations
 ```
-├── api.py                 # FastAPI backend server
-├── main.py               # CLI version (one-time indexing)
-├── chat_history.json     # Chat storage (created at runtime)
-├── faiss_index_uploaded/ # Vector index (created at runtime)
-├── uploaded_files/       # Uploaded documents (created at runtime)
-├── frontend/             # React frontend
-│   ├── src/
-│   │   ├── App.jsx
-│   │   ├── lib/api.js
-│   │   └── index.css
-│   ├── package.json
-│   └── vite.config.js
-└── README.md
-```
 
-## Environment
+---
 
-- **Python**: 3.11+
-- **Ollama**: Must be running (`ollama serve`)
-- **Ports**: Frontend: 5173, API: 8000
+# 👨‍💻 Author
+
+## Ali Haider 
+
+AI Engineer 
+
+Focused on:
+- Retrieval-Augmented Generation (RAG)
+- AI Engineering
+- Machine Learning
+- NLP Systems
+- Full-Stack AI Applications
+- Computer Vision
+
+---
+
+# 📜 License
+
+Internal project. All rights reserved by the author.
+
+---
