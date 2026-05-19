@@ -8,6 +8,9 @@ An intelligent **Hybrid Retrieval-Augmented Generation (RAG) AI System** that dy
 
 This project combines **semantic retrieval**, **LLMs**, **vector search**, and **live web search** into a single AI assistant capable of handling both static and dynamic knowledge sources.
 
+---
+
+![Hybrid RAG Chat UI](https://raw.githubusercontent.com/Haider4300/Hybrid_RAG_AI-System/main/screenshots/screenshotschat-ui.png)
 
 ---
 
