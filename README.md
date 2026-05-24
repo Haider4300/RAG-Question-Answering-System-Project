@@ -10,6 +10,12 @@ This project combines **semantic retrieval**, **LLMs**, **vector search**, and *
 
 ---
 
+## 🚀 Live Demo
+
+[![Live Demo](https://img.shields.io/badge/🤗%20Hugging%20Face-Live%20Demo-blue)](https://huggingface.co/spaces/Haider4300/hybrid-rag-system)
+
+---
+
 ![Hybrid RAG Chat UI](https://raw.githubusercontent.com/Haider4300/Hybrid_RAG_AI-System/main/screenshots/screenshotschat-ui.png)
 
 ---
@@ -23,9 +29,10 @@ This project combines **semantic retrieval**, **LLMs**, **vector search**, and *
 ✅ Streaming LLM Responses  
 ✅ Context-Aware Conversations  
 ✅ FastAPI Backend + React Frontend  
-✅ Ollama Local LLM Integration  
+✅ Groq Cloud LLM Integration  
 ✅ Persistent Multi-Chat Sessions  
 ✅ Source Citations with Page Numbers  
+✅ Deployed on Hugging Face Spaces  
 
 ---
 
@@ -65,8 +72,8 @@ This project solves that problem using an intelligent routing system that dynami
          ▼                     ▼                     ▼
 
  ┌────────────────┐   ┌────────────────┐   ┌────────────────┐
- │ FAISS VectorDB │   │ Gemma3 via     │   │ DuckDuckGo     │
- │ Semantic Search│   │ Ollama         │   │ Live Search    │
+ │ FAISS VectorDB │   │ Llama3.1 via   │   │ DuckDuckGo     │
+ │ Semantic Search│   │ Groq API       │   │ Live Search    │
  └───────┬────────┘   └────────┬───────┘   └────────┬───────┘
          │                     │                     │
          ▼                     ▼                     ▼
@@ -175,9 +182,9 @@ This project demonstrates multiple modern AI engineering patterns used in real-w
 
 | Layer | Technology |
 |---|---|
-| LLM Runtime | Ollama |
-| LLM Model | gemma3:4b |
-| Embeddings | nomic-embed-text |
+| LLM API | Groq (Free, Cloud) |
+| LLM Model | llama-3.1-8b-instant |
+| Embeddings | all-MiniLM-L6-v2 (HuggingFace) |
 | Vector Database | FAISS |
 | RAG Framework | LangChain |
 | Backend | FastAPI |
@@ -185,6 +192,7 @@ This project demonstrates multiple modern AI engineering patterns used in real-w
 | Styling | Tailwind CSS |
 | Web Search | DuckDuckGo |
 | Streaming | NDJSON |
+| Deployment | Hugging Face Spaces (Docker) |
 | Language | Python |
 
 ---
@@ -196,17 +204,19 @@ Hybrid-RAG-System/
 │
 ├── api.py
 ├── main.py
+├── Dockerfile
+├── requirements.txt
 ├── pyproject.toml
 ├── README.md
 │
-├── uploads/
-├── vector_store/
+├── uploaded_files/
+├── faiss_index_uploaded/
 │
 ├── frontend/
 │   ├── src/
 │   │   ├── App.jsx
-│   │   ├── components/
 │   │   ├── lib/
+│   │   │   └── api.js
 │   │   └── main.jsx
 │   │
 │   ├── package.json
@@ -222,41 +232,11 @@ Hybrid-RAG-System/
 
 ## 💬 Chat Interface
 
-```text
-Add screenshot:
-screenshots/chat-ui.png
-```
+![Hybrid RAG Chat UI](https://raw.githubusercontent.com/Haider4300/Hybrid_RAG_AI-System/main/screenshots/screenshotschat-ui.png)
 
 ---
 
-## 📄 Document Upload
-
-```text
-Add screenshot:
-screenshots/upload.png
-```
-
----
-
-## ⚡ Streaming Responses
-
-```text
-Add screenshot:
-screenshots/streaming.png
-```
-
----
-
-## 📚 Source Citations
-
-```text
-Add screenshot:
-screenshots/citations.png
-```
-
----
-
-# ⚙️ Installation & Setup
+# ⚙️ Installation & Setup (Local Development)
 
 ---
 
@@ -266,7 +246,7 @@ Install the following:
 
 - Python 3.11+
 - Node.js 18+
-- Ollama
+- Ollama (for local LLM)
 
 Download Ollama:
 
@@ -276,7 +256,20 @@ https://ollama.ai/
 
 ---
 
-# 2️⃣ Pull Required Models
+## 🔑 Get Free Groq API Key
+
+1. Go to [console.groq.com](https://console.groq.com)
+2. Sign up free (no credit card needed)
+3. Click **API Keys** → **Create API Key**
+4. Create a `.env` file in project root:
+
+```text
+GROQ_API_KEY=gsk_your_key_here
+```
+
+---
+
+## 2️⃣ Pull Required Ollama Models (Local Only)
 
 ```bash
 ollama pull gemma3:4b
@@ -285,25 +278,21 @@ ollama pull nomic-embed-text
 
 ---
 
-# 3️⃣ Install Backend Dependencies
+## 3️⃣ Install Backend Dependencies
 
-Using `uv` (recommended):
+```bash
+pip install -r requirements.txt
+```
+
+Or using `uv` (recommended):
 
 ```bash
 uv sync
 ```
 
-Or using pip:
-
-```bash
-pip install fastapi uvicorn langchain langchain-community \
-langchain-ollama faiss-cpu pymupdf python-docx \
-python-multipart duckduckgo-search
-```
-
 ---
 
-# 4️⃣ Install Frontend Dependencies
+## 4️⃣ Install Frontend Dependencies
 
 ```bash
 cd frontend
@@ -313,8 +302,6 @@ npm install
 ---
 
 # ▶️ Run The Application
-
----
 
 ## Backend
 
@@ -327,8 +314,6 @@ Runs on:
 ```text
 http://localhost:8000
 ```
-
----
 
 ## Frontend
 
@@ -349,28 +334,36 @@ http://localhost:5173
 
 | Method | Endpoint | Description |
 |---|---|---|
-| GET | `/health` | Health check |
-| POST | `/query` | Standard query |
-| POST | `/query/stream` | Streaming query |
-| POST | `/documents/upload` | Upload document |
-| GET | `/documents` | List documents |
-| DELETE | `/documents/{id}` | Delete document |
-| GET | `/chats` | List chats |
-| POST | `/chats` | Create chat |
-| GET | `/chats/{id}` | Get chat history |
+| GET | `/api/health` | Health check |
+| POST | `/api/query` | Standard query |
+| POST | `/api/query/stream` | Streaming query |
+| POST | `/api/documents/upload` | Upload document |
+| GET | `/api/documents` | List documents |
+| GET | `/api/documents/{id}/status` | Indexing status |
+| DELETE | `/api/documents/{id}` | Delete document |
+| GET | `/api/chats` | List chats |
+| POST | `/api/chats` | Create chat |
+| GET | `/api/chats/{id}` | Get chat history |
+| PATCH | `/api/chats/{id}/title` | Rename chat |
+| DELETE | `/api/chats/{id}` | Delete chat |
 
 ---
 
-# 🌐 Deployment Options
+# 🌐 Deployment
 
-| Platform | Usage |
-|---|---|
-| Hugging Face Spaces | Full AI app deployment |
-| Vercel | Frontend hosting |
-| Render | Backend hosting |
+## Hugging Face Spaces (Live)
+
+This project is deployed on Hugging Face Spaces using Docker.
+
+[![Live Demo](https://img.shields.io/badge/🤗%20Hugging%20Face-Live%20Demo-blue)](https://huggingface.co/spaces/Haider4300/hybrid-rag-system)
+
+**Environment variable required in HF Space Settings → Secrets:**
+
+```text
+GROQ_API_KEY=gsk_your_key_here
+```
 
 ---
-
 
 # 📈 Current Capabilities
 
@@ -382,6 +375,8 @@ http://localhost:5173
 ✅ Real-Time Web Search  
 ✅ Multi-Document Support  
 ✅ Full-Stack AI Architecture  
+✅ Docker Deployment  
+✅ Hugging Face Spaces Hosting  
 
 ---
 
@@ -389,7 +384,6 @@ http://localhost:5173
 
 Planned future enhancements:
 
-- Docker deployment
 - Redis caching
 - PostgreSQL integration
 - Authentication system
@@ -434,9 +428,9 @@ Answer returned with citations
 
 # 👨‍💻 Author
 
-## Ali Haider 
+## Ali Haider
 
-AI Engineer 
+AI Engineer
 
 Focused on:
 - Retrieval-Augmented Generation (RAG)
